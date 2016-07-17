@@ -1,4 +1,8 @@
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
+
+import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -17,11 +21,21 @@ public class Employee {
     @Column(name = "address", nullable = false)
     protected String address;
 
+    @Column(name = "birth_date", nullable = true)
+    @Type(type = "date")
+    protected Date birthDate;
+
     public Employee() {}
 
     public Employee(String name, String address) {
         this.name = name;
         this.address = address;
+    }
+
+    public Employee(String name, String address, Date birthDate) {
+        this.name = name;
+        this.address = address;
+        this.birthDate = birthDate;
     }
 
     public void setId(Integer id) {
@@ -46,6 +60,14 @@ public class Employee {
 
     public String getAddress() {
         return this.address;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Date getBirthDate() {
+        return this.birthDate;
     }
 
 }

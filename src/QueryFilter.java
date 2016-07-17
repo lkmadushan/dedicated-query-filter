@@ -12,7 +12,7 @@ public class QueryFilter {
 
     protected Criteria criteria;
 
-    protected HashMap<String, String> filters;
+    protected HashMap<String, Object> filters;
 
     public QueryFilter(HashMap filters) {
         this.filters = filters;
@@ -23,7 +23,7 @@ public class QueryFilter {
 
         this.filters.keySet().forEach((key) -> {
             try {
-                this.getClass().getMethod(key.toString(), String.class).invoke(this, this.filters.get(key));
+                this.getClass().getMethod(key.toString(), Object.class).invoke(this, this.filters.get(key));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
