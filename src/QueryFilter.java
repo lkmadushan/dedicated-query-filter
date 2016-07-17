@@ -10,7 +10,7 @@ public class QueryFilter {
 
     protected final Session session;
 
-    protected Criteria criterias;
+    protected Criteria criteria;
 
     protected HashMap<String, String> filters;
 
@@ -33,6 +33,6 @@ public class QueryFilter {
             }
         });
 
-        return this.criterias.list();
+        return this.criteria.list();
     }
 }
