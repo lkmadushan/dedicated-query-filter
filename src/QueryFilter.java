@@ -23,7 +23,9 @@ public class QueryFilter {
 
         this.filters.keySet().forEach((key) -> {
             try {
-                this.getClass().getMethod(key.toString(), Object.class).invoke(this, this.filters.get(key));
+                this.getClass().getMethod(
+                        key.toString(), this.filters.get(key).getClass()
+                ).invoke(this, this.filters.get(key));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {

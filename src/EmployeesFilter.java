@@ -11,15 +11,15 @@ public class EmployeesFilter extends QueryFilter {
         this.criteria = this.session.createCriteria(Employee.class);
     }
 
-    public void name(Object name) {
+    public void name(String name) {
         this.criteria.add(Restrictions.like("name", "%" + name + "%"));
     }
 
-    public void address(Object address) {
+    public void address(String address) {
         this.criteria.add(Restrictions.like("address", "%" + address + "%"));
     }
 
-    public void age(Object age) {
+    public void age(Integer age) {
         this.criteria.add(
                 Restrictions.sqlRestriction("(YEAR(NOW()) - YEAR(birth_date)) = ?", age, IntegerType.INSTANCE)
         );
