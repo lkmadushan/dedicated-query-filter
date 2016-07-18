@@ -6,7 +6,7 @@ import java.util.List;
 
 public class EmployeeDao {
 
-    public List<Employee> filter(EmployeesFilter filter) {
+    public List<Employee> filter(QueryFilter filter) {
         return (List<Employee>) filter.apply();
     }
 

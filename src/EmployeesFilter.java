@@ -1,7 +1,8 @@
 import java.util.HashMap;
 
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.type.IntegerType;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 
 public class EmployeesFilter extends QueryFilter {
 
@@ -12,11 +13,11 @@ public class EmployeesFilter extends QueryFilter {
     }
 
     public void name(String name) {
-        this.criteria.add(Restrictions.like("name", "%" + name + "%"));
+        this.criteria.add(Restrictions.like("name", name, MatchMode.START));
     }
 
     public void address(String address) {
-        this.criteria.add(Restrictions.like("address", "%" + address + "%"));
+        this.criteria.add(Restrictions.like("address", address, MatchMode.ANYWHERE));
     }
 
     public void age(Integer age) {
