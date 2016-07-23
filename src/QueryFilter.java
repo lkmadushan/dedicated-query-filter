@@ -16,13 +16,14 @@ public class QueryFilter {
 
     public QueryFilter(HashMap filters) {
         this.filters = filters;
-        this.session = HibernateManager.getSession();
+        this.session = HibernateManager.getSessionFactory().openSession();
     }
 
     public List apply() {
 
         this.filters.keySet().forEach((key) -> {
             try {
+                System.out.println(key.toString());
                 this.getClass().getMethod(
                         key.toString(), this.filters.get(key).getClass()
                 ).invoke(this, this.filters.get(key));
@@ -35,6 +36,11 @@ public class QueryFilter {
             }
         });
 
-        return this.criteria.list();
+        List results = this.criteria.list();
+
+        this.session.flush();
+        this.session.close();
+
+        return results;
     }
 }

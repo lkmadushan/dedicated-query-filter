@@ -3,16 +3,16 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 
 import java.util.Date;
-
-import static javax.persistence.GenerationType.IDENTITY;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "employees", catalog = "filter")
+@Table(name = "employees")
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     protected Integer id;
 
     @Column(name = "name", nullable = false)
@@ -24,6 +24,12 @@ public class Employee {
     @Column(name = "birth_date", nullable = true)
     @Type(type = "date")
     protected Date birthDate;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(name = "employee_role",
+            joinColumns = { @JoinColumn(name = "employee_id") },
+            inverseJoinColumns = { @JoinColumn(name = "role_id") })
+    protected Set<Role> roles = new HashSet<Role>();
 
     public Employee() {}
 
@@ -68,6 +74,18 @@ public class Employee {
 
     public Date getBirthDate() {
         return this.birthDate;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Role> getRoles() {
+        return this.roles;
+    }
+
+    public String toString() {
+        return this.name;
     }
 
 }

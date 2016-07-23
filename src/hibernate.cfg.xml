@@ -14,7 +14,9 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="hibernate.jdbc.batch_size">20</property>
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
 
         <mapping class="Employee"/>
+        <mapping class="Role"/>
     </session-factory>
 </hibernate-configuration>

@@ -25,4 +25,9 @@ public class EmployeesFilter extends QueryFilter {
                 Restrictions.sqlRestriction("(YEAR(NOW()) - YEAR(birth_date)) = ?", age, IntegerType.INSTANCE)
         );
     }
+
+    public void role(Role role) {
+        this.criteria.createAlias("roles", "role");
+        this.criteria.add(Restrictions.eq("role.id", role.getId()));
+    }
 }
