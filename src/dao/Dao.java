@@ -1,6 +1,12 @@
+package dao;
+
+import entity.Employee;
+import filters.QueryFilter;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import util.HibernateManager;
 
 import java.util.List;
 
@@ -18,6 +24,13 @@ public class Dao<T> {
 
     public List<T> filter(QueryFilter filter) {
         return (List<T>) filter.apply();
+    }
+
+    public List<T> all(Class<T> cls) {
+        final Session session = this.getSession();
+        Criteria criteria = session.createCriteria(cls);
+
+        return (List<T>) criteria.list();
     }
 
     public T find(Class<T> cls, Integer id) {

@@ -1,8 +1,11 @@
+package filters;
+
 import java.util.List;
 import java.util.HashMap;
 
 import org.hibernate.Session;
 import org.hibernate.Criteria;
+import util.HibernateManager;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -23,7 +26,6 @@ public class QueryFilter {
 
         this.filters.keySet().forEach((key) -> {
             try {
-                System.out.println(key.toString());
                 this.getClass().getMethod(
                         key.toString(), this.filters.get(key).getClass()
                 ).invoke(this, this.filters.get(key));

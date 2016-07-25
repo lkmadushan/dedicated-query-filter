@@ -1,8 +1,12 @@
+package filters;
+
 import java.util.HashMap;
 
-import org.hibernate.type.IntegerType;
+import entity.Employee;
+import entity.Role;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.type.IntegerType;
 
 public class EmployeesFilter extends QueryFilter {
 

@@ -1,7 +1,10 @@
+package entity;
+
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
+import java.time.Period;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;

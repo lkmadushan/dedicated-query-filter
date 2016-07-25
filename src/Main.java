@@ -1,25 +1,20 @@
-import java.util.List;
-import java.util.HashMap;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("ui/sample.fxml"));
+        primaryStage.setTitle("Filter");
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.show();
+    }
 
     public static void main(final String[] args) throws Exception {
-
-        EmployeeDao employeeDao = new EmployeeDao();
-        RoleDao roleDao = new RoleDao();
-
-        Role role = roleDao.find(1);
-
-        HashMap<String, Object> filters = new HashMap<>();
-        //filters.put("name", "kuma");
-        //filters.put("age", 25);
-        filters.put("role", role);
-        //filters.put("address", "ga");
-
-        List<Employee> employees = employeeDao.filter(new EmployeesFilter(filters));
-
-        for (Employee e : employees) {
-            System.out.println(e.getName());
-        }
+        launch(args);
     }
 }
