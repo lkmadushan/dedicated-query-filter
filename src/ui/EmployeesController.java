@@ -61,6 +61,8 @@ public class EmployeesController {
         filters.put("name", name.getText().trim());
         filters.put("address", address.getText().trim());
 
+        if (! age.getText().isEmpty()) filters.put("age", Integer.parseInt(age.getText().trim()));
+
         if (! comboBoxRoles.getSelectionModel().isEmpty())
             filters.put("role", comboBoxRoles.getSelectionModel().getSelectedItem());
 
