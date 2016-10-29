@@ -63,7 +63,7 @@ public class Employee {
         return this.name;
     }
 
-    public void getAddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
